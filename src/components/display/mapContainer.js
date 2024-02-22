@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker, Polyline } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -52,12 +52,23 @@ function MapContainer(props) {
       mapContainerStyle={containerStyle}
       center={center} // You might want to dynamically set this based on your data
       zoom={21}
+      options={{
+        mapTypeId: "satellite" // Set the map type to satellite
+      }}
     >
       {points &&
         points.length > 0 &&
         points.map((coordinate) => (
           <Marker position={{ lat: coordinate.lat, lng: coordinate.lng }} />
         ))}
+        <Polyline
+        path={points.map(point => ({ lat: point.lat, lng: point.lng }))}
+        options={{
+          strokeColor: "#0000FF",
+          strokeOpacity:  1.0,
+          strokeWeight:  2,
+        }}
+      />
     </GoogleMap>
   ) : (
     <></>
