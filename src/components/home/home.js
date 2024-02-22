@@ -1,12 +1,19 @@
 import React from "react";
-import { useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import * as Icons from "react-bootstrap-icons";
 import headerImg from "./img/cityLA2.jpg";
 import RoverModal from "./roverModal";
-import './home.css'
+import "./home.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Home = (props) => {
   const [roverModal, setRoverModal] = useState(false);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <div className="home-page">
@@ -15,30 +22,42 @@ const Home = (props) => {
           backgroundImage: `url(${headerImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "300px",
+          minHeight: "50vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           color: "white",
         }}
       >
-        <h1 style={{ textAlign: "center" }}>Sidewalk Data Visualization</h1>
+        <h1
+          style={{ textAlign: "center" }}
+          data-aos="fade-left"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="500"
+          data-aos-duration="1000"
+        >
+          Sidewalk Data Visualization
+        </h1>
       </header>
       <main className="pb-5">
         <Container>
           {/*Description */}
           <Row className="mt-5">
             <Col
-              Col
               md={{ span: 6, offset: 3 }}
               className="text-center mission-section"
               style={{
-                backgroundColor: "#f8f9fa",
+                color: "#ffffff",
+                backgroundColor: "#343a40",
                 padding: "20px",
                 borderRadius: "5px",
               }}
+              data-aos="fade-right"
+              data-aos-anchor="#example-anchor"
+              data-aos-offset="500"
+              data-aos-duration="1000"
             >
-              <section>
+              <section class="overview">
                 <h2>Overview</h2>
                 <p style={{ fontStyle: "italic" }}>
                   The Los Angeles City Bureau of Engineering oversees an
@@ -56,44 +75,82 @@ const Home = (props) => {
           </Row>
           <Row className="mt-5">
             <Col md={6}>
-              <section>
-                <h2>About Us</h2>
-                <p>
-                  We are dedicated to providing a platform where users can
-                  upload sidewalk data and visualize it in an interactive way.
-                  <br />
-                  <br />
-                  The collection of sidewalk data is facilitated by the cutting
-                  edge-technology of the Ubiquity Magni Rover.
-                </p>
-                <Button onClick={() => setRoverModal(true)}>View Rover</Button>
-              </section>
-              <section>
-                <h2>How it Works</h2>
-                <p>
-                  Users can upload their sidewalk data files, which contain
-                  Section ID, measurements, images, and GPS coordinates.
-                </p>
-                <p>
-                  Our web application parses the uploaded files and generates
-                  visualizations of the sidewalk data.
-                </p>
-              </section>
+              <Card
+                className="aboutlink mb-3"
+                style={{ textDecoration: "none", fontSize: "16px" }}
+                data-aos="zoom-in-left"
+                data-aos-duration="1000"
+              >
+                <div class="icon-box rounded-3 about-box">
+                  <div class="homeicon">
+                    <div class="i">
+                      <Icons.FilePersonFill className="abouticon" />
+                    </div>
+                  </div>
+                  <h4>About us</h4>
+                  <p style={{ fontSize: "17px" }}>
+                    We are dedicated to providing a platform where users can
+                    upload sidewalk data and visualize it in an interactive way.
+                    <br />
+                    <br />
+                    The collection of sidewalk data is facilitated by the
+                    cutting edge-technology of the Ubiquity Magni Rover.
+                  </p>
+                  <Button onClick={() => setRoverModal(true)}>
+                    View Rover
+                  </Button>
+                </div>
+              </Card>
+              <Card
+                className="aboutlink mb-3"
+                style={{ textDecoration: "none", fontSize: "16px" }}
+                data-aos="zoom-in-left"
+                data-aos-duration="1000"
+              >
+                <div class="icon-box rounded-3 about-box">
+                  <div class="homeicon">
+                    <div class="i">
+                      <Icons.GearFill className="abouticon" />
+                    </div>
+                  </div>
+                  <h4>How it Works</h4>
+                  <p style={{ fontSize: "17px" }}>
+                    Users can upload their sidewalk data files, which contain
+                    Section ID, measurements, images, and GPS coordinates.
+                    <br />
+                    <br />
+                    Our web application parses the uploaded files and generates
+                    visualizations of the sidewalk data.
+                  </p>
+                </div>
+              </Card>
             </Col>
             <Col md={6}>
-              <section className="text-center">
-                <h2>Get Started</h2>
-                <p>Ready to visualize your sidewalk data? Get started now!</p>
-                <Link to="/display">
-                  <Button variant="primary" >
-                    Upload Data
-                  </Button>
-                </Link>
-              </section>
+              <Card
+                className="aboutlink mb-3"
+                style={{ textDecoration: "none", fontSize: "16px" }}
+                data-aos="zoom-in-right"
+                data-aos-duration="1000"
+              >
+                <div class="icon-box rounded-3 about-box">
+                  <div class="homeicon">
+                    <div class="i">
+                      <Icons.PersonWalking className="abouticon" />
+                    </div>
+                  </div>
+                  <h4>Get Started</h4>
+                  <p style={{ fontSize: "17px" }}>
+                    Ready to visualize your sidewalk data? Get started now!
+                  </p>
+                  <Link to="/display">
+                    <Button variant="primary">Upload Data</Button>
+                  </Link>
+                </div>
+              </Card>
             </Col>
           </Row>
         </Container>
-        <RoverModal show={roverModal} onHide={() => setRoverModal(false)}/>
+        <RoverModal show={roverModal} onHide={() => setRoverModal(false)} />
       </main>
     </div>
   );
