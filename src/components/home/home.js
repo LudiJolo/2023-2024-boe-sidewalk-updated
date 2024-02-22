@@ -39,7 +39,7 @@ const Home = (props) => {
           Sidewalk Data Visualization
         </h1>
       </header>
-      <main className="pb-5">
+      <main className="pb-5 border border-5 border-dark">
         <Container>
           {/*Description */}
           <Row className="mt-5">
