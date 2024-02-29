@@ -8,7 +8,7 @@ type Sidewalk @model {
   y_slope: Float!
   h_displacement: Float!
   v_displacement: Float!
-  compliance: String!
+  compliance: Boolean!
   lat: Float!
   lon: Float!
 }

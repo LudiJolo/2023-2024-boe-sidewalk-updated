@@ -1,6 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { GoogleMap, useJsApiLoader, Marker, Polyline } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  Polyline,
+} from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -15,45 +20,54 @@ function MapContainer(props) {
   });
   /**********************************/
 
-
-
   /*************useStates and helper methods*********************/
   const [points, setPoints] = useState([]);
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
-  const convertCoordinates = (coordinate) => {
+  const convertCoordinates = (coordinate, direction) => {
     if (coordinate.lat && coordinate.lng) {
       const latString = coordinate.lat.toString();
       const longString = coordinate.lng.toString();
-      const latitude =
+      let latitude =
         parseFloat(latString.slice(0, 2)) + parseFloat(latString.slice(2)) / 60;
-      const longitude = -(
+      let longitude =
         parseFloat(longString.slice(0, 3)) +
-        parseFloat(longString.slice(3)) / 60
-      );
+        parseFloat(longString.slice(3)) / 60;
+
+      if (direction.x.trim() === "W") {
+        longitude = longitude* -1;
+      }
+      if (direction.y.trim() === "S") {
+        latitude = -latitude * -1;
+      }
+      console.log(direction.y, direction.x);
+      console.log(latitude, longitude);
       return { lat: latitude, lng: longitude };
     }
   };
   useEffect(() => {
     let pointsArray = [];
     for (var i = 1; i < props.sidewalkData.length - 1; i++) {
-      const coordinate = convertCoordinates({
-        lat: props.sidewalkData[i][10],
-        lng: props.sidewalkData[i][12],
-      });
+      const coordinate = convertCoordinates(
+        {
+          lat: props.sidewalkData[i][10],
+          lng: props.sidewalkData[i][12],
+        },
+        { y: props.sidewalkData[i][11], x: props.sidewalkData[i][13] }
+      );
       pointsArray.push(coordinate);
     }
     setPoints(pointsArray);
     setCenter(pointsArray[0]);
   }, []);
   /**********************************/
-  
+
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center} // You might want to dynamically set this based on your data
       zoom={21}
       options={{
-        mapTypeId: "satellite" // Set the map type to satellite
+        mapTypeId: "satellite", // Set the map type to satellite
       }}
     >
       {points &&
@@ -61,12 +75,12 @@ function MapContainer(props) {
         points.map((coordinate) => (
           <Marker position={{ lat: coordinate.lat, lng: coordinate.lng }} />
         ))}
-        <Polyline
-        path={points.map(point => ({ lat: point.lat, lng: point.lng }))}
+      <Polyline
+        path={points.map((point) => ({ lat: point.lat, lng: point.lng }))}
         options={{
           strokeColor: "#0000FF",
-          strokeOpacity:  1.0,
-          strokeWeight:  2,
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
         }}
       />
     </GoogleMap>

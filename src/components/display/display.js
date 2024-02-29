@@ -85,6 +85,9 @@ const Display = (props) => {
             onChange={handleFileUpload}
           />
         </motion.div>
+        <motion.div className="box m-auto" whileHover={{ scale: 1.2 }}>
+          <Button variant="secondary">Upload to Database</Button>
+        </motion.div>
       </div>
       <Row className="mb-3">
         <Col md={6}>

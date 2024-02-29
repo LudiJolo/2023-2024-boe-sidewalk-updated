@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -27,7 +27,7 @@ export declare type SidewalkCreateFormInputValues = {
     y_slope?: number;
     h_displacement?: number;
     v_displacement?: number;
-    compliance?: string;
+    compliance?: boolean;
     lat?: number;
     lon?: number;
 };
@@ -37,7 +37,7 @@ export declare type SidewalkCreateFormValidationValues = {
     y_slope?: ValidationFunction<number>;
     h_displacement?: ValidationFunction<number>;
     v_displacement?: ValidationFunction<number>;
-    compliance?: ValidationFunction<string>;
+    compliance?: ValidationFunction<boolean>;
     lat?: ValidationFunction<number>;
     lon?: ValidationFunction<number>;
 };
@@ -49,7 +49,7 @@ export declare type SidewalkCreateFormOverridesProps = {
     y_slope?: PrimitiveOverrideProps<TextFieldProps>;
     h_displacement?: PrimitiveOverrideProps<TextFieldProps>;
     v_displacement?: PrimitiveOverrideProps<TextFieldProps>;
-    compliance?: PrimitiveOverrideProps<TextFieldProps>;
+    compliance?: PrimitiveOverrideProps<SwitchFieldProps>;
     lat?: PrimitiveOverrideProps<TextFieldProps>;
     lon?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;

@@ -8,6 +8,7 @@ import About from './components/about/about';
 import Navi from './components/navbar/navi';
 import Display from './components/display/display';
 import Footer from './components/footer/footer';
+import NavigateLA from './components/navigatela/NavigateLA';
 
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
     {
       path: "/display",
       element: <Display/>,
+    },
+    {
+      path: "/navla",
+      element: <NavigateLA/>,
     },
   ]);
 

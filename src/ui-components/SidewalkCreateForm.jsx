@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createSidewalk } from "../graphql/mutations";
@@ -28,7 +34,7 @@ export default function SidewalkCreateForm(props) {
     y_slope: "",
     h_displacement: "",
     v_displacement: "",
-    compliance: "",
+    compliance: false,
     lat: "",
     lon: "",
   };
@@ -328,13 +334,13 @@ export default function SidewalkCreateForm(props) {
         hasError={errors.v_displacement?.hasError}
         {...getOverrideProps(overrides, "v_displacement")}
       ></TextField>
-      <TextField
+      <SwitchField
         label="Compliance"
-        isRequired={true}
-        isReadOnly={false}
-        value={compliance}
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={compliance}
         onChange={(e) => {
-          let { value } = e.target;
+          let value = e.target.checked;
           if (onChange) {
             const modelFields = {
               SID,
@@ -358,7 +364,7 @@ export default function SidewalkCreateForm(props) {
         errorMessage={errors.compliance?.errorMessage}
         hasError={errors.compliance?.hasError}
         {...getOverrideProps(overrides, "compliance")}
-      ></TextField>
+      ></SwitchField>
       <TextField
         label="Lat"
         isRequired={true}
