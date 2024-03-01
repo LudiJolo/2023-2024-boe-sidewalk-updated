@@ -4,7 +4,7 @@
 export const onCreateSidewalk = /* GraphQL */ `
   subscription OnCreateSidewalk($filter: ModelSubscriptionSidewalkFilterInput) {
     onCreateSidewalk(filter: $filter) {
-      SID
+      SectionID
       x_slope
       y_slope
       h_displacement
@@ -22,7 +22,7 @@ export const onCreateSidewalk = /* GraphQL */ `
 export const onUpdateSidewalk = /* GraphQL */ `
   subscription OnUpdateSidewalk($filter: ModelSubscriptionSidewalkFilterInput) {
     onUpdateSidewalk(filter: $filter) {
-      SID
+      SectionID
       x_slope
       y_slope
       h_displacement
@@ -40,7 +40,7 @@ export const onUpdateSidewalk = /* GraphQL */ `
 export const onDeleteSidewalk = /* GraphQL */ `
   subscription OnDeleteSidewalk($filter: ModelSubscriptionSidewalkFilterInput) {
     onDeleteSidewalk(filter: $filter) {
-      SID
+      SectionID
       x_slope
       y_slope
       h_displacement

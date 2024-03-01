@@ -4,7 +4,7 @@
 export const getSidewalk = /* GraphQL */ `
   query GetSidewalk($id: ID!) {
     getSidewalk(id: $id) {
-      SID
+      SectionID
       x_slope
       y_slope
       h_displacement
@@ -27,7 +27,7 @@ export const listSidewalks = /* GraphQL */ `
   ) {
     listSidewalks(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        SID
+        SectionID
         x_slope
         y_slope
         h_displacement

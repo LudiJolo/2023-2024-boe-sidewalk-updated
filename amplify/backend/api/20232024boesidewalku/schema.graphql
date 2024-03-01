@@ -3,7 +3,7 @@
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
 type Sidewalk @model {
-  SID: Int!
+  SectionID: Int!
   x_slope: Float!
   y_slope: Float!
   h_displacement: Float!

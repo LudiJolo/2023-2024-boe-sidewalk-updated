@@ -24,6 +24,7 @@ function MapContainer(props) {
   const [points, setPoints] = useState([]);
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
   const convertCoordinates = (coordinate, direction) => {
+
     if (coordinate.lat && coordinate.lng) {
       const latString = coordinate.lat.toString();
       const longString = coordinate.lng.toString();
@@ -44,6 +45,7 @@ function MapContainer(props) {
       return { lat: latitude, lng: longitude };
     }
   };
+  
   useEffect(() => {
     let pointsArray = [];
     for (var i = 1; i < props.sidewalkData.length - 1; i++) {

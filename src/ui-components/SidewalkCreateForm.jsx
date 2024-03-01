@@ -29,7 +29,7 @@ export default function SidewalkCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    SID: "",
+    SectionID: "",
     x_slope: "",
     y_slope: "",
     h_displacement: "",
@@ -38,7 +38,7 @@ export default function SidewalkCreateForm(props) {
     lat: "",
     lon: "",
   };
-  const [SID, setSID] = React.useState(initialValues.SID);
+  const [SectionID, setSectionID] = React.useState(initialValues.SectionID);
   const [x_slope, setX_slope] = React.useState(initialValues.x_slope);
   const [y_slope, setY_slope] = React.useState(initialValues.y_slope);
   const [h_displacement, setH_displacement] = React.useState(
@@ -52,7 +52,7 @@ export default function SidewalkCreateForm(props) {
   const [lon, setLon] = React.useState(initialValues.lon);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setSID(initialValues.SID);
+    setSectionID(initialValues.SectionID);
     setX_slope(initialValues.x_slope);
     setY_slope(initialValues.y_slope);
     setH_displacement(initialValues.h_displacement);
@@ -63,7 +63,7 @@ export default function SidewalkCreateForm(props) {
     setErrors({});
   };
   const validations = {
-    SID: [{ type: "Required" }],
+    SectionID: [{ type: "Required" }],
     x_slope: [{ type: "Required" }],
     y_slope: [{ type: "Required" }],
     h_displacement: [{ type: "Required" }],
@@ -98,7 +98,7 @@ export default function SidewalkCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          SID,
+          SectionID,
           x_slope,
           y_slope,
           h_displacement,
@@ -160,19 +160,19 @@ export default function SidewalkCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Sid"
+        label="Section id"
         isRequired={true}
         isReadOnly={false}
         type="number"
         step="any"
-        value={SID}
+        value={SectionID}
         onChange={(e) => {
           let value = isNaN(parseInt(e.target.value))
             ? e.target.value
             : parseInt(e.target.value);
           if (onChange) {
             const modelFields = {
-              SID: value,
+              SectionID: value,
               x_slope,
               y_slope,
               h_displacement,
@@ -182,17 +182,17 @@ export default function SidewalkCreateForm(props) {
               lon,
             };
             const result = onChange(modelFields);
-            value = result?.SID ?? value;
+            value = result?.SectionID ?? value;
           }
-          if (errors.SID?.hasError) {
-            runValidationTasks("SID", value);
+          if (errors.SectionID?.hasError) {
+            runValidationTasks("SectionID", value);
           }
-          setSID(value);
+          setSectionID(value);
         }}
-        onBlur={() => runValidationTasks("SID", SID)}
-        errorMessage={errors.SID?.errorMessage}
-        hasError={errors.SID?.hasError}
-        {...getOverrideProps(overrides, "SID")}
+        onBlur={() => runValidationTasks("SectionID", SectionID)}
+        errorMessage={errors.SectionID?.errorMessage}
+        hasError={errors.SectionID?.hasError}
+        {...getOverrideProps(overrides, "SectionID")}
       ></TextField>
       <TextField
         label="X slope"
@@ -207,7 +207,7 @@ export default function SidewalkCreateForm(props) {
             : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
-              SID,
+              SectionID,
               x_slope: value,
               y_slope,
               h_displacement,
@@ -242,7 +242,7 @@ export default function SidewalkCreateForm(props) {
             : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
-              SID,
+              SectionID,
               x_slope,
               y_slope: value,
               h_displacement,
@@ -277,7 +277,7 @@ export default function SidewalkCreateForm(props) {
             : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
-              SID,
+              SectionID,
               x_slope,
               y_slope,
               h_displacement: value,
@@ -312,7 +312,7 @@ export default function SidewalkCreateForm(props) {
             : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
-              SID,
+              SectionID,
               x_slope,
               y_slope,
               h_displacement,
@@ -343,7 +343,7 @@ export default function SidewalkCreateForm(props) {
           let value = e.target.checked;
           if (onChange) {
             const modelFields = {
-              SID,
+              SectionID,
               x_slope,
               y_slope,
               h_displacement,
@@ -378,7 +378,7 @@ export default function SidewalkCreateForm(props) {
             : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
-              SID,
+              SectionID,
               x_slope,
               y_slope,
               h_displacement,
@@ -413,7 +413,7 @@ export default function SidewalkCreateForm(props) {
             : parseFloat(e.target.value);
           if (onChange) {
             const modelFields = {
-              SID,
+              SectionID,
               x_slope,
               y_slope,
               h_displacement,

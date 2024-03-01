@@ -22,7 +22,7 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type SidewalkUpdateFormInputValues = {
-    SID?: number;
+    SectionID?: number;
     x_slope?: number;
     y_slope?: number;
     h_displacement?: number;
@@ -32,7 +32,7 @@ export declare type SidewalkUpdateFormInputValues = {
     lon?: number;
 };
 export declare type SidewalkUpdateFormValidationValues = {
-    SID?: ValidationFunction<number>;
+    SectionID?: ValidationFunction<number>;
     x_slope?: ValidationFunction<number>;
     y_slope?: ValidationFunction<number>;
     h_displacement?: ValidationFunction<number>;
@@ -44,7 +44,7 @@ export declare type SidewalkUpdateFormValidationValues = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SidewalkUpdateFormOverridesProps = {
     SidewalkUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    SID?: PrimitiveOverrideProps<TextFieldProps>;
+    SectionID?: PrimitiveOverrideProps<TextFieldProps>;
     x_slope?: PrimitiveOverrideProps<TextFieldProps>;
     y_slope?: PrimitiveOverrideProps<TextFieldProps>;
     h_displacement?: PrimitiveOverrideProps<TextFieldProps>;

@@ -7,7 +7,7 @@ export const createSidewalk = /* GraphQL */ `
     $condition: ModelSidewalkConditionInput
   ) {
     createSidewalk(input: $input, condition: $condition) {
-      SID
+      SectionID
       x_slope
       y_slope
       h_displacement
@@ -28,7 +28,7 @@ export const updateSidewalk = /* GraphQL */ `
     $condition: ModelSidewalkConditionInput
   ) {
     updateSidewalk(input: $input, condition: $condition) {
-      SID
+      SectionID
       x_slope
       y_slope
       h_displacement
@@ -49,7 +49,7 @@ export const deleteSidewalk = /* GraphQL */ `
     $condition: ModelSidewalkConditionInput
   ) {
     deleteSidewalk(input: $input, condition: $condition) {
-      SID
+      SectionID
       x_slope
       y_slope
       h_displacement
