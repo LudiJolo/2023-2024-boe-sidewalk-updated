@@ -19,7 +19,7 @@ const Display = (props) => {
       extractCSVData(file)
         .then((data) => {
           setData(data); // Set the extracted data in your component's state
-          uploadToDatabase(data[1]);
+          //uploadToDatabase(data[1]);
         })
         .catch((error) => {
           console.error(error.message);
