@@ -40,8 +40,8 @@ function MapContainer(props) {
       if (direction.y.trim() === "S") {
         latitude = -latitude * -1;
       }
-      console.log(direction.y, direction.x);
-      console.log(latitude, longitude);
+      // console.log(direction.y, direction.x);
+      // console.log(latitude, longitude);
       return { lat: latitude, lng: longitude };
     }
   };

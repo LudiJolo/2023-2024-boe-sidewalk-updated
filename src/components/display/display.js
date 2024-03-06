@@ -6,11 +6,13 @@ import MapContainer from "./mapContainer";
 import { motion } from "framer-motion";
 import * as Icons from "react-bootstrap-icons";
 import "./display.css";
-// import { createSW } from "./DatabaseUpload";
+import { createSW } from "../utils/database";
 
 const Display = (props) => {
   const [data, setData] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isDisabled, setButtonDisabled] = useState(false);
+
   const fileInput = useRef(null);
 
   const handleFileUpload = (event) => {
@@ -18,34 +20,44 @@ const Display = (props) => {
     if (file) {
       extractCSVData(file)
         .then((data) => {
+          console.log(data);
           setData(data); // Set the extracted data in your component's state
-          //uploadToDatabase(data[1]);
         })
         .catch((error) => {
-          console.error(error.message);
+          console.log(error.message);
         });
     } else {
       alert("Please select a file to upload.");
     }
   };
 
-  // const uploadToDatabase = (data) =>{
-  //   const obj = {
-  //     SectionID: data[0],
-  //     x_slope: parseFloat(data[3]),
-  //     y_slope: parseFloat(data[4]),
-  //     h_displacement: 0.0,
-  //     v_displacement: 0.0,
-  //     compliance: true,
-  //     lat: parseFloat(data[1]),
-  //     lon: -parseFloat(data[2]),
-  //   }
-  //   try {
-  //     createSW(obj);
-  //   } catch (error) {
-  //     console.log(error, "database upload failed")
-  //   }
-  // };
+
+  const databaseUploadHandler = () =>{
+    data.forEach((element) => {
+      if (element.length > 1) {
+        uploadToDatabase(element);
+      }
+    })
+    setButtonDisabled(true);
+  };
+
+  const uploadToDatabase = (data) => {
+    const obj = {
+      SectionID: data[0],
+      x_slope: parseFloat(data[3]),
+      y_slope: parseFloat(data[4]),
+      h_displacement: 0.0,
+      v_displacement: 0.0,
+      compliance: true,
+      lat: parseFloat(data[1]),
+      lon: -parseFloat(data[2]),
+    };
+    try {
+      createSW(obj);
+    } catch (error) {
+      console.log(error, "database upload failed");
+    }
+  };
 
   const handleButtonClick = () => {
     // Trigger the hidden file input click event
@@ -106,7 +118,13 @@ const Display = (props) => {
           />
         </motion.div>
         <motion.div className="box m-auto" whileHover={{ scale: 1.2 }}>
-          <Button variant="secondary">Upload to Database</Button>
+          <Button
+            variant="secondary"
+            onClick={databaseUploadHandler}
+            disabled={isDisabled}
+          >
+            Upload to Database
+          </Button>
         </motion.div>
       </div>
       <Row className="mb-3">
