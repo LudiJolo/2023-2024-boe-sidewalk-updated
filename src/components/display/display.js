@@ -6,6 +6,7 @@ import MapContainer from "./mapContainer";
 import { motion } from "framer-motion";
 import * as Icons from "react-bootstrap-icons";
 import "./display.css";
+import { createSW } from "./DatabaseUpload";
 
 const Display = (props) => {
   const [data, setData] = useState([]);
@@ -18,12 +19,31 @@ const Display = (props) => {
       extractCSVData(file)
         .then((data) => {
           setData(data); // Set the extracted data in your component's state
+          uploadToDatabase(data[1]);
         })
         .catch((error) => {
           console.error(error.message);
         });
     } else {
       alert("Please select a file to upload.");
+    }
+  };
+
+  const uploadToDatabase = (data) =>{
+    const obj = {
+      SectionID: data[0],
+      x_slope: parseFloat(data[3]),
+      y_slope: parseFloat(data[4]),
+      h_displacement: 0.0,
+      v_displacement: 0.0,
+      compliance: true,
+      lat: parseFloat(data[1]),
+      lon: -parseFloat(data[2]),
+    }
+    try {
+      createSW(obj);
+    } catch (error) {
+      console.log(error, "database upload failed")
     }
   };
 

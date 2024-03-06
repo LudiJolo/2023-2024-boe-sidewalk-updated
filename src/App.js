@@ -9,8 +9,11 @@ import Navi from './components/navbar/navi';
 import Display from './components/display/display';
 import Footer from './components/footer/footer';
 import NavigateLA from './components/navigatela/NavigateLA';
+import { Amplify } from 'aws-amplify';
+import config from "./aws-exports";
 
 
+Amplify.configure(config);
 function App() {
   const router = createBrowserRouter([
     {
