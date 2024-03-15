@@ -23,14 +23,39 @@ function MapContainer(props) {
   /*************useStates and helper methods*********************/
   const [points, setPoints] = useState([]);
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
+  const convertCoordinates = (coordinate, direction) => {
 
+    if (coordinate.lat && coordinate.lng) {
+      const latString = coordinate.lat.toString();
+      const longString = coordinate.lng.toString();
+      let latitude =
+        parseFloat(latString.slice(0, 2)) + parseFloat(latString.slice(2)) / 60;
+      let longitude =
+        parseFloat(longString.slice(0, 3)) +
+        parseFloat(longString.slice(3)) / 60;
+
+      if (direction.x.trim() === "W") {
+        longitude = longitude* -1;
+      }
+      if (direction.y.trim() === "S") {
+        latitude = -latitude * -1;
+      }
+      // console.log(direction.y, direction.x);
+      // console.log(latitude, longitude);
+      return { lat: latitude, lng: longitude };
+    }
+  };
+  
   useEffect(() => {
     let pointsArray = [];
     for (var i = 1; i < props.sidewalkData.length - 1; i++) {
-      const coordinate = {
-        lat: props.sidewalkData[i][1],
-        lng: props.sidewalkData[i][2],
-      };
+      const coordinate = convertCoordinates(
+        {
+          lat: props.sidewalkData[i][10],
+          lng: props.sidewalkData[i][12],
+        },
+        { y: props.sidewalkData[i][11], x: props.sidewalkData[i][13] }
+      );
       pointsArray.push(coordinate);
     }
     setPoints(pointsArray);

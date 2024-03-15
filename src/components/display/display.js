@@ -137,8 +137,6 @@ const Display = (props) => {
                   <th>Section ID</th>
                   <th>X-slope</th>
                   <th>Y-slope</th>
-                  <th>Latitude</th>
-                  <th>Longitude</th>
                 </tr>
               </thead>
               <tbody>
@@ -150,8 +148,6 @@ const Display = (props) => {
                       <td>{row[0]}</td>
                       <td>{row[3]}</td>
                       <td>{row[4]}</td>
-                      <td>{row[1]}</td>
-                      <td>{row[2]}</td>
                     </tr>
                   ))}
               </tbody>
