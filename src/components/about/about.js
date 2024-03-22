@@ -24,7 +24,15 @@ const About = (props) => {
           color: "white",
         }}
       >
-        <h1>About</h1>
+        <h1
+          style={{ textAlign: "center" }}
+          data-aos="fade-left"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="500"
+          data-aos-duration="1000"
+        >
+          About
+        </h1>
       </header>
       <main className="pb-5 border border-5 border-dark">
         <Container>
@@ -45,7 +53,7 @@ const About = (props) => {
               <section className="overview">
                 <h2 style={{ textAlign: "center" }}>Why is this Project Being Developed?</h2>
                 <p style={{ fontStyle: "italic" }}>
-                  The City of Los Angeles Bureau of Engineering is responsible
+                  The City of Los Angeles is responsible
                   for the upkeep of a vast network of more than 11,000 miles of
                   sidewalks. Uneven settling or elevation caused by tree-root
                   growth can result in uneven surfaces, posing potential
