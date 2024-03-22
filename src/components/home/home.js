@@ -60,7 +60,7 @@ const Home = (props) => {
               <section class="overview">
                 <h2>Overview</h2>
                 <p style={{ fontStyle: "italic" }}>
-                  The Los Angeles City Bureau of Engineering oversees an
+                  The City of Los Angeles oversees an
                   extensive sidewalk infrastructure encompassing more than
                   11,000 miles. When segments of these sidewalks experience
                   irregular settling or upheaval caused by tree-root growth,
