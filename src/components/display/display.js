@@ -1,16 +1,24 @@
 import React from "react";
 import { Row, Table, Col, Button } from "react-bootstrap";
 import { useState, useRef } from "react";
-import extractCSVData from "./CsvExtractor";
+import extractCSVData from "../utils/CsvExtractor";
 import MapContainer from "./mapContainer";
 import { motion } from "framer-motion";
 import * as Icons from "react-bootstrap-icons";
 import "./display.css";
 import { createSW } from "../utils/database";
 
+const accountName = "swbotblob";
+const sas =
+  "sv=2022-11-02&ss=b&srt=sco&sp=rwdlacitfx&se=2024-08-27T02:27:35Z&st=2023-10-26T18:27:35Z&spr=https&sig=8wVjbdqhOnfGewQfVrBZE0Ofrftm0Y57EGBVvn2q790%3D";
+
+const containerName = "csulaswproject";
+const imgPath = "2023-2024-data/images_3_29";
+
+const url = `https://${accountName}.blob.core.windows.net/${containerName}/${imgPath}`;
 const Display = (props) => {
   const [data, setData] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setIndex] = useState(0);
   const [isDisabled, setButtonDisabled] = useState(false);
 
   const fileInput = useRef(null);
@@ -31,13 +39,16 @@ const Display = (props) => {
     }
   };
 
+  const selectRowHandler = (index) => {
+    setIndex(index);
+  };
 
-  const databaseUploadHandler = () =>{
+  const databaseUploadHandler = () => {
     data.forEach((element) => {
       if (element.length > 1) {
         uploadToDatabase(element);
       }
-    })
+    });
     setButtonDisabled(true);
   };
 
@@ -130,7 +141,7 @@ const Display = (props) => {
       <Row className="mb-3">
         <Col md={6}>
           <div class="tableContainer border border-5 border-dark">
-            <Table striped variant="dark">
+            <Table hover striped variant="dark" className="dataTable">
               <thead>
                 <tr>
                   <th>Row #</th>
@@ -145,13 +156,13 @@ const Display = (props) => {
                 {data &&
                   data.length > 0 &&
                   data.map((row, index) => (
-                    <tr>
+                    <tr key={index} className={selectedIndex === index ? 'selected' : ''} onClick={() => selectRowHandler(index)}>
                       <td>{index}</td>
                       <td>{row[0]}</td>
-                      <td>{row[3]}</td>
-                      <td>{row[4]}</td>
                       <td>{row[1]}</td>
                       <td>{row[2]}</td>
+                      <td>{row[3]}</td>
+                      <td>{row[4]}</td>
                     </tr>
                   ))}
               </tbody>
@@ -162,8 +173,12 @@ const Display = (props) => {
           {data && data.length > 0 && (
             <div className="visuals border border-5 border-dark">
               <MapContainer sidewalkData={data} />
-              <br />
-              <h1>image here</h1>
+              <img
+                src={`${url}/${data[selectedIndex][5]}?${sas}`}
+                alt="Image"
+                class="imgViewer img-fluid"
+              />
+              
             </div>
           )}
         </Col>

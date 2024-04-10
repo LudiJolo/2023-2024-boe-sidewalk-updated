@@ -35,3 +35,15 @@ Table thead{
 .visuals{
     height: 100vh;
 }
+
+.selected {
+  background-color: rgb(119, 124, 126); /* Change to your desired color */
+}
+
+.dataTable{
+  cursor: pointer; /* Default cursor style */
+}
+.visuals {
+  position: relative;
+  overflow: hidden;
+}
