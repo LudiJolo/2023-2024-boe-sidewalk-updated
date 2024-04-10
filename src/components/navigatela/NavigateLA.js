@@ -235,8 +235,10 @@ const NavigateLA = (props) => {
               {data.length > 0
                 ? blobItem
                 : "No file yet. Select a folder to begin..."}
+                <br></br>
+              Folder Selected: {folder}
             </p>
-            <p>Folder Selected: {folder} </p>
+            <p></p>
             <p align="left">
               <b>Instructions</b>:
               <dl>
@@ -247,12 +249,14 @@ const NavigateLA = (props) => {
                   <b>Step 2.</b> Click on 'Get Single Csv' button. (click
                   repeatedly to cylce through csv files). &nbsp;
                   <i>
-                    If folder selected is any one of the 'All..' folders Click
-                    on 'Get All CSV' button (no need for repeated clicks).
+                    If folder selected is any one of the 'All..' folders a 'Get
+                    All CSV' button will appear instead. (no need for repeated
+                    clicks).
                   </i>
                 </dt>
                 <dt>
-                  <b>Step 3.</b>&nbsp;Click on 'Download CSV' button. Browser will download csv file to your computer. 
+                  <b>Step 3.</b>&nbsp;Click on 'Download CSV' button. Browser
+                  will download csv file to your computer.
                 </dt>
               </dl>
             </p>

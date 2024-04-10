@@ -135,8 +135,8 @@ const Display = (props) => {
                 <tr>
                   <th>Row #</th>
                   <th>Section ID</th>
-                  <th>X-slope</th>
-                  <th>Y-slope</th>
+                  <th>X-slope (Deg)</th>
+                  <th>Y-slope (Deg)</th>
                 </tr>
               </thead>
               <tbody>
