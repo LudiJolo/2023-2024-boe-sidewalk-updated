@@ -128,6 +128,7 @@ const Display = (props) => {
             onChange={handleFileUpload}
           />
         </motion.div>
+        {/*
         <motion.div className="box m-auto" whileHover={{ scale: 1.2 }}>
           <Button
             variant="secondary"
@@ -137,6 +138,7 @@ const Display = (props) => {
             Upload to Database
           </Button>
         </motion.div>
+         */}
       </div>
       <Row className="mb-3">
         <Col md={6}>
@@ -150,21 +152,31 @@ const Display = (props) => {
                   <th>Y-slope</th>
                   <th>Latitude</th>
                   <th>Longitude</th>
+                  <th>Image</th>
                 </tr>
               </thead>
               <tbody>
                 {data &&
-                  data.length > 0 &&
-                  data.map((row, index) => (
-                    <tr key={index} className={selectedIndex === index ? 'selected' : ''} onClick={() => selectRowHandler(index)}>
-                      <td>{index}</td>
-                      <td>{row[0]}</td>
-                      <td>{row[1]}</td>
-                      <td>{row[2]}</td>
-                      <td>{row[3]}</td>
-                      <td>{row[4]}</td>
-                    </tr>
-                  ))}
+                  data.length > 1 &&
+                  data.map((row, index) =>
+                    row[0] ? (
+                      <tr
+                        key={index}
+                        className={selectedIndex === index ? "selected" : ""}
+                        onClick={() => selectRowHandler(index)}
+                      >
+                        <td>{index}</td>
+                        <td>{row[0]}</td>
+                        <td>{row[1]}</td>
+                        <td>{row[2]}</td>
+                        <td>{row[3]}</td>
+                        <td>{row[4]}</td>
+                        <td>{row[5]}</td>
+                      </tr>
+                    ) : (
+                      <div></div>
+                    )
+                  )}
               </tbody>
             </Table>
           </div>
@@ -172,13 +184,12 @@ const Display = (props) => {
         <Col md={6}>
           {data && data.length > 0 && (
             <div className="visuals border border-5 border-dark">
-              <MapContainer sidewalkData={data} />
+              <MapContainer sidewalkData={data} currentIndex={selectedIndex} selectPoint={selectRowHandler}/>
               <img
                 src={`${url}/${data[selectedIndex][5]}?${sas}`}
                 alt="Image"
                 class="imgViewer img-fluid"
               />
-              
             </div>
           )}
         </Col>
