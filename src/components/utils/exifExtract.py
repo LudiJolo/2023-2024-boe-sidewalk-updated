@@ -113,7 +113,7 @@ def match(swData, file_name):
             # [SectionID, X-slope, Y-slope, Latitude, Longitude, ImgName]
             row = [sData[0], sData[3], sData[4], sData[1], sData[2],minimum['imgName']]
 
-            # add to row
+            # add to result
             result.append(row)
 
 
